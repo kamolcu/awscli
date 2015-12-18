@@ -2,7 +2,6 @@ import argparse
 import subprocess
 import sys
 import json
-import gzip
 
 def write_items_file(file_name, contents):
     f = open(file_name, "w")
