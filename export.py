@@ -1,7 +1,3 @@
-# Export DynamoDB table and upload to S3
-# table_name = "wms-d-dym-pds-variants"
-# s3bucket = ""
-
 # https://docs.python.org/2/library/argparse.html
 # https://docs.python.org/2/library/subprocess.html
 # https://github.com/bchew/dynamodump/blob/master/dynamodump.py
@@ -9,7 +5,6 @@ import argparse
 import subprocess
 import sys
 import json
-import gzip
 
 def write_items_file(file_name, contents):
     f = open(file_name, "w")
