@@ -13,9 +13,9 @@ parser.add_argument('table_name', help='DynamoDB Table Name')
 parser.add_argument('items_file_to_import', help='File that contains items from export.py')
 
 args = parser.parse_args()
-export_command = 'aws dynamodb scan --table-name %s' % (args.table_name)
-print('Command to run => [%s]' % export_command)
-p = subprocess.Popen(export_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+import_command = 'aws dynamodb scan --table-name %s' % (args.table_name)
+print('Command to run => [%s]' % import_command)
+p = subprocess.Popen(import_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 (ret, err) = p.communicate()
 
 if err is not None and len(err.strip()) > 0:
