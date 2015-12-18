@@ -17,6 +17,7 @@ p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, sh
 # Possible errors:
 # The user-provided path <file_path> does not exist.
 # upload failed: ... A client error (AccessDenied) occurred when calling the PutObject operation: Access Denied
+# upload failed: <target-dir> to s3://<bucket>/ [Errno 21] Is a directory: u'...'
 if err is not None and len(err.strip()) > 0:
     sys.exit(err)
 
