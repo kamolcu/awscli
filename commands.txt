@@ -13,3 +13,14 @@ aws ec2 terminate-instances --instance-ids i-0eae4c22367e30792 i-0e8321c16e542ea
 aws ec2 modify-instance-attribute --instance-id i-0f2a673b9510f7f05 --instance-type "{\"Value\": \"m3.medium\"}"
 
 aws iam add-role-to-instance-profile --role-name wlx-b-th-d-mmch-role --instance-profile-name
+
+aws cloudsearchdomain --endpoint-url http://search-wlx-b-yky7h4wljza2t76ehzyvzunbc4.ap-southeast-1.cloudsearch.amazonaws.com upload-documents --content-type
+ application/json --documents pds-lot-1.json
+
+# http://docs.aws.amazon.com/cli/latest/reference/route53/change-resource-record-sets.html
+sandbox-b-mch-api.welovex-dev.com
+sandbox-b-pds-api.welovex-dev.com
+sandbox-b-fin-api.welovex-dev.com
+sandbox-b-auth-api.welovex-dev.com
+aws route53 change-resource-record-sets --generate-cli-skeleton
+aws route53 change-resource-record-sets --hosted-zone-id Z1I7O7JWA2ZITD --change-batch file:///Users/kamol/route53-ec2.json
