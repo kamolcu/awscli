@@ -3,7 +3,7 @@ import sys
 import json
 
 # Name awsa-mpds-apibe,awsa-mmch-apibe
-alpha_api_tags = ['wlx-b-th-d-minv-apiap', 'wlx-b-th-d-mprc-apiap', 'wlx-b-th-d-mpds-apiap', 'wlx-b-th-d-mmch-apiap','wlx-b-th-d-mfin-apiap', 'wlx-b-th-d-mauth-apiap','wlx-b-th-d-mcrt-apiap','wlx-th-d-jenkins']
+alpha_api_tags = ['wlx-b-th-d-minv-apiap', 'wlx-b-th-d-mprc-apiap', 'wlx-b-th-d-mpds-apiap', 'wlx-b-th-d-mmch-apiap','wlx-b-th-d-mfin-apiap', 'wlx-b-th-d-mauth-apiap','wlx-b-th-d-mcrt-apiap','wlx-th-d-jenkins','wlx-b-th-d-mweb-apiap','wlx-b-th-d-mort-apiap']
 command_template = 'aws ec2 describe-instances --filters "Name=tag:Name,Values=%s"'
 
 ec_two_s = []
