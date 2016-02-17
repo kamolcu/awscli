@@ -1,0 +1,15 @@
+# create ec2 instance
+aws ec2 run-instances --iam-instance-profile Name=wlx-b-th-d-mmch-role --image-id ami-708d4313 --count 1 --instance-type m3.medium --key-name ITM-ALPHA --security-group-ids sg-fc37d298 --subnet-id subnet-3e3f6749 --block-device-mappings "[{\"DeviceName\":\"/dev/sda\",\"Ebs\":{\"VolumeSize\":16,\"SnapshotId\":\"snap-08e5d216\"}}]"
+
+# describe sg,subnet,vpc
+aws ec2 describe-security-groups --filters Name=tag:Name,Values=sg_xxx
+aws ec2 describe-subnets --filters Name=vpc-id,Values=vpc-xxx Name=availabilityZone,Values=ap-southeast-1b Name=tag:Name,Values=subnet_xxx
+aws ec2 describe-vpcs --filters Name=tag:Name,Values=vpc_xxx
+
+# terminate ec2
+aws ec2 terminate-instances --instance-ids i-0eae4c22367e30792 i-0e8321c16e542ea90 i-012aee3e2e7146b50
+
+# update ec2 instance type
+aws ec2 modify-instance-attribute --instance-id i-0f2a673b9510f7f05 --instance-type "{\"Value\": \"m3.medium\"}"
+
+aws iam add-role-to-instance-profile --role-name wlx-b-th-d-mmch-role --instance-profile-name
