@@ -44,24 +44,28 @@ aws cloudsearch index-documents --domain-name products-b
 aws cloudsearch describe-analysis-schemes --domain-name products-b
 aws cloudsearchdomain --endpoint-url http://doc-products-b-fji2agnyei4hqkm7irjkgww5na.ap-southeast-1.cloudsearch.amazonaws.com upload-documents --content-type application/json --documents /Users/kamol/awscli/document-input.json
 
-aws cloudsearch define-index-field --domain-name products-b --name product_id --type text --return-enabled true --sort-enabled false --highlight-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name availability --type literal --search-enabled false --facet-enabled false --return-enabled true --sort-enabled false  --default-value false
+aws cloudsearch define-index-field --domain-name products-b --name boost_score --type double --search-enabled false --facet-enabled false --return-enabled true --sort-enabled false --facet-enabled false --default-value 0.0
+aws cloudsearch define-index-field --domain-name products-b --name brand_name --type literal --search-enabled true --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name category --type literal --search-enabled true --facet-enabled true --return-enabled true --sort-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name click_score --type double --search-enabled false --facet-enabled false --return-enabled true --sort-enabled false --default-value 0.0
+aws cloudsearch define-index-field --domain-name products-b --name color --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name color_tone --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name default_image --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name default_product_images --type literal-array --search-enabled false --facet-enabled true --return-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name description --type text --return-enabled true --sort-enabled false --highlight-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name discounted_price --type double --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name merchant_id --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name merchant_name --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name normal_price --type double --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name payment_ccw --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled false --default-value false
+aws cloudsearch define-index-field --domain-name products-b --name payment_cod --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled false --default-value true
+aws cloudsearch define-index-field --domain-name products-b --name product_id --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
 aws cloudsearch define-index-field --domain-name products-b --name product_name --type text --return-enabled true --sort-enabled true --highlight-enabled false
-aws cloudsearch define-index-field --domain-name products-b --name variant_id --type text --return-enabled true --sort-enabled false --highlight-enabled false
-aws cloudsearch define-index-field --domain-name products-b --name merchant_id --type text --return-enabled true --sort-enabled false --highlight-enabled false
-aws cloudsearch define-index-field --domain-name products-b --name merchant_name --type text --return-enabled true --sort-enabled true --highlight-enabled false
-aws cloudsearch define-index-field --domain-name products-b --name brand_name --type literal --return-enabled true --sort-enabled true --facet-enabled true
-aws cloudsearch define-index-field --domain-name products-b --name color --type literal --return-enabled true --sort-enabled true --facet-enabled true
-aws cloudsearch define-index-field --domain-name products-b --name size --type literal --return-enabled true --sort-enabled true --facet-enabled true
-aws cloudsearch define-index-field --domain-name products-b --name color_tone --type literal --return-enabled true --sort-enabled true --facet-enabled true
-aws cloudsearch define-index-field --domain-name products-b --name description --type text --return-enabled true --sort-enabled true --highlight-enabled true
-aws cloudsearch define-index-field --domain-name products-b --name default_image --type text --return-enabled true --sort-enabled false --highlight-enabled false
-aws cloudsearch define-index-field --domain-name products-b --name default_product_images --type text-array --return-enabled true --highlight-enabled false
-aws cloudsearch define-index-field --domain-name products-b --name normal_price --type double --return-enabled true --sort-enabled true --facet-enabled true
-aws cloudsearch define-index-field --domain-name products-b --name discounted_price --type double --return-enabled true --sort-enabled true --facet-enabled true
-aws cloudsearch define-index-field --domain-name products-b --name selling_price --type double --return-enabled true --sort-enabled true --facet-enabled true
-aws cloudsearch define-index-field --domain-name products-b --name boost_score --type double --return-enabled true --sort-enabled false --facet-enabled false --default-value 0.0
-aws cloudsearch define-index-field --domain-name products-b --name click_score --type double --return-enabled true --sort-enabled false --facet-enabled false --default-value 0.0
-aws cloudsearch define-index-field --domain-name products-b --name rating --type double --return-enabled true --sort-enabled false --facet-enabled false --default-value 0.0
-aws cloudsearch define-index-field --domain-name products-b --name payment_cod --type literal --return-enabled true --sort-enabled false --facet-enabled true --default-value true
-aws cloudsearch define-index-field --domain-name products-b --name payment_ccw --type literal --return-enabled true --sort-enabled false --facet-enabled true --default-value false
-aws cloudsearch define-index-field --domain-name products-b --name availability --type literal --return-enabled true --sort-enabled false --facet-enabled false --default-value false
+aws cloudsearch define-index-field --domain-name products-b --name rating --type double --search-enabled false --facet-enabled false --return-enabled true --sort-enabled false --default-value 0.0
+aws cloudsearch define-index-field --domain-name products-b --name selling_price --type double --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name size --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name variant_id --type literal --search-enabled false --facet-enabled true --return-enabled true --sort-enabled true
+
+
+
