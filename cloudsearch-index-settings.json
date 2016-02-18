@@ -1,0 +1,13 @@
+{
+  "DomainName": "products-b",
+  "IndexField": {
+    "IndexFieldName": "product_id",
+    "IndexFieldType": "text",
+    "TextOptions": {
+      "DefaultValue": "",
+      "ReturnEnabled": true,
+      "SortEnabled": false,
+      "HighlightEnabled": false
+    }
+  }
+}

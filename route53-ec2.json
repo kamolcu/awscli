@@ -4,12 +4,12 @@
     {
       "Action": "UPSERT",
       "ResourceRecordSet": {
-        "Name": "sandbox-b-pds-api.welovex-dev.com",
+        "Name": "sandbox-b-fin-api.welovex-dev.com",
         "Type": "A",
         "TTL": 300,
         "ResourceRecords": [
           {
-            "Value": "10.229.149.128"
+            "Value": "10.229.149.243"
           }
         ]
       }

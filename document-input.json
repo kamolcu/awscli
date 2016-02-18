@@ -1,0 +1,13 @@
+[
+  {
+    "type": "add",
+    "id": "PKASAAA10059-AIMTEST123",
+    "fields": {
+      "product_name": "PKASAAA10059"
+    }
+  },
+  {
+    "type": "delete",
+    "id": "tt0484575"
+  }
+]

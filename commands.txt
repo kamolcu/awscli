@@ -12,10 +12,19 @@ aws ec2 terminate-instances --instance-ids i-0eae4c22367e30792 i-0e8321c16e542ea
 # update ec2 instance type
 aws ec2 modify-instance-attribute --instance-id i-0f2a673b9510f7f05 --instance-type "{\"Value\": \"m3.medium\"}"
 
+# create tags
+aws ec2 create-tags --resources i-0c8f105a95112f2d8 --tags Key=Name,Value=wlx-th-d-jenkins
+aws ec2 create-tags --resources i-096f23db32ea55002 --tags Key=Name,Value=wlx-b-th-d-msch-apiap
+aws ec2 create-tags --resources i-096f23db32ea55002 --tags Key=Start-Stop_Schedule,Value=ON
+
+aws ec2 create-tags --resources i-032f8cfcadc8e3eb2 i-054b51df93dc02e89 i-046fe3bc7235b86aa i-0cfad65022b02f76f i-06538ec0d9c8222fe --tags Key=Start-Stop_Schedule,Value=ON
+aws ec2 create-tags --resources i-0c1e6a2c7dc93dd4c --tags Key=Start-Stop_Schedule,Value=ON
+
 aws iam add-role-to-instance-profile --role-name wlx-b-th-d-mmch-role --instance-profile-name
 
-aws cloudsearchdomain --endpoint-url http://search-wlx-b-yky7h4wljza2t76ehzyvzunbc4.ap-southeast-1.cloudsearch.amazonaws.com upload-documents --content-type
- application/json --documents pds-lot-1.json
+aws cloudsearchdomain --endpoint-url http://search-wlx-b-yky7h4wljza2t76ehzyvzunbc4.ap-southeast-1.cloudsearch.amazonaws.com upload-documents --content-type application/json --documents /Users/kamol/pds-lot-1.json
+
+#aws cs-configure-from-batches --domain-name products-b --source /opt/pds-lot-1.json
 
 # http://docs.aws.amazon.com/cli/latest/reference/route53/change-resource-record-sets.html
 sandbox-b-mch-api.welovex-dev.com
@@ -24,3 +33,35 @@ sandbox-b-fin-api.welovex-dev.com
 sandbox-b-auth-api.welovex-dev.com
 aws route53 change-resource-record-sets --generate-cli-skeleton
 aws route53 change-resource-record-sets --hosted-zone-id Z1I7O7JWA2ZITD --change-batch file:///Users/kamol/route53-ec2.json
+
+aws route53 change-resource-record-sets --hosted-zone-id Z1I7O7JWA2ZITD --change-batch file:///Users/kamol/awscli/
+
+
+http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html
+aws cloudsearch define-index-field --generate-cli-skeleton
+aws cloudsearch define-index-field --cli-input-json file:///Users/kamol/awscli/cloudsearch-index-settings.json
+aws cloudsearch index-documents --domain-name products-b
+aws cloudsearch describe-analysis-schemes --domain-name products-b
+aws cloudsearchdomain --endpoint-url http://doc-products-b-fji2agnyei4hqkm7irjkgww5na.ap-southeast-1.cloudsearch.amazonaws.com upload-documents --content-type application/json --documents /Users/kamol/awscli/document-input.json
+
+aws cloudsearch define-index-field --domain-name products-b --name product_id --type text --return-enabled true --sort-enabled false --highlight-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name product_name --type text --return-enabled true --sort-enabled true --highlight-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name variant_id --type text --return-enabled true --sort-enabled false --highlight-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name merchant_id --type text --return-enabled true --sort-enabled false --highlight-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name merchant_name --type text --return-enabled true --sort-enabled true --highlight-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name brand_name --type literal --return-enabled true --sort-enabled true --facet-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name color --type literal --return-enabled true --sort-enabled true --facet-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name size --type literal --return-enabled true --sort-enabled true --facet-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name color_tone --type literal --return-enabled true --sort-enabled true --facet-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name description --type text --return-enabled true --sort-enabled true --highlight-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name default_image --type text --return-enabled true --sort-enabled false --highlight-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name default_product_images --type text-array --return-enabled true --highlight-enabled false
+aws cloudsearch define-index-field --domain-name products-b --name normal_price --type double --return-enabled true --sort-enabled true --facet-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name discounted_price --type double --return-enabled true --sort-enabled true --facet-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name selling_price --type double --return-enabled true --sort-enabled true --facet-enabled true
+aws cloudsearch define-index-field --domain-name products-b --name boost_score --type double --return-enabled true --sort-enabled false --facet-enabled false --default-value 0.0
+aws cloudsearch define-index-field --domain-name products-b --name click_score --type double --return-enabled true --sort-enabled false --facet-enabled false --default-value 0.0
+aws cloudsearch define-index-field --domain-name products-b --name rating --type double --return-enabled true --sort-enabled false --facet-enabled false --default-value 0.0
+aws cloudsearch define-index-field --domain-name products-b --name payment_cod --type literal --return-enabled true --sort-enabled false --facet-enabled true --default-value true
+aws cloudsearch define-index-field --domain-name products-b --name payment_ccw --type literal --return-enabled true --sort-enabled false --facet-enabled true --default-value false
+aws cloudsearch define-index-field --domain-name products-b --name availability --type literal --return-enabled true --sort-enabled false --facet-enabled false --default-value false

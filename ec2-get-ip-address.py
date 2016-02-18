@@ -3,13 +3,29 @@ import sys
 import json
 
 # Name awsa-mpds-apibe,awsa-mmch-apibe
-alpha_api_tags = ['wlx-b-th-d-minv-apiap', 'wlx-b-th-d-mprc-apiap', 'wlx-b-th-d-mpds-apiap', 'wlx-b-th-d-mmch-apiap','wlx-b-th-d-mfin-apiap', 'wlx-b-th-d-mauth-apiap','wlx-b-th-d-mcrt-apiap','wlx-th-d-jenkins','wlx-b-th-d-mweb-apiap','wlx-b-th-d-mort-apiap']
+alpha_api_tags = [
+    'wlx-b-th-d-mfin-apiap',
+    'wlx-b-th-d-mauth-apiap',
+    'wlx-b-th-d-minv-apiap',
+    'wlx-th-d-jenkins',
+    'wlx-b-th-d-mpds-apiap',
+    'wlx-b-th-d-mmch-apiap',
+    'wlx-b-th-d-mcrt-apiap',
+    'wlx-b-th-d-mweb-apiap',
+    'wlx-b-th-d-mort-apiap',
+    'wlx-b-th-d-msss-apiap',
+    'wlx-b-th-d-msch-apiap',
+    'wlx-b-th-d-maad-apiap',
+    'wlx-b-th-d-mprc-apiap',
+]
+
 command_template = 'aws ec2 describe-instances --filters "Name=tag:Name,Values=%s"'
 
 ec_two_s = []
 for tag in alpha_api_tags:
     target_command = command_template % tag
-    p = subprocess.Popen(target_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    p = subprocess.Popen(target_command, stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE, shell=True)
     (ret, err) = p.communicate()
     if err is not None and len(err.strip()) > 0:
         sys.exit(err)
@@ -30,4 +46,3 @@ for ec_two in ec_two_s:
         pass
     finally:
         pass
-
